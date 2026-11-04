@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="我的学习农场——用星露谷式的田野，记录每一次学习、坚持与收获。">
+  <meta name="theme-color" content="#8fd3df">
+  <title>学习农场 · 把成长种成一片田野</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <noscript>
+    <div class="noscript-banner">学习农场需要 JavaScript 才能生成作物与日志，请在浏览器设置中启用 JavaScript 后再来。</div>
+  </noscript>
+
+  <!-- 图标库 -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-sprout" viewBox="0 0 24 24">
+      <path d="M12 21V10.5M12 13C7.5 13 4.5 10.4 4.5 6c4.8 0 7.5 2.6 7.5 7Zm0 0c4.5 0 7.5-2.6 7.5-7-4.8 0-7.5 2.6-7.5 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 7v5l3.2 2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-basket" viewBox="0 0 24 24">
+      <path d="M4 9h16l-1.5 10h-13L4 9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M8 9c0-4 8-4 8 0M8.5 13v2.5M12 13v2.5M15.5 13v2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M7 3v4M17 3v4M3.5 9.5h17M8 13h2M14 13h2M8 16.5h2M14 16.5h2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24">
+      <path d="M13.5 3c.4 4.4-3.3 5.3-3.3 8.4 0 1.4.8 2.2 1.8 2.7-.2-2.2 1-3.7 2.8-4.6 2 1.8 3.2 3.8 3.2 6.1A6 6 0 0 1 6 15.7C6 11.2 10.5 8.7 13.5 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24">
+      <path d="M6 21V4M6 5h11l-2.2 3.5L17 12H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24">
+      <path d="m4 8 4 3 4-6 4 6 4-3-2 10H6L4 8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M7 20h10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="5" y="10" width="14" height="10" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-shell">
+      <a class="brand" href="#home" aria-label="学习农场首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+            <rect width="16" height="16" fill="#f4c451"/>
+            <rect x="2" y="2" width="2" height="2" fill="#ffe08a"/>
+            <rect x="12" y="11" width="2" height="2" fill="#d99a32"/>
+            <rect x="2" y="13" width="12" height="2" fill="#7a4a2b"/>
+            <rect x="3" y="12" width="10" height="1" fill="#9a6438"/>
+            <rect x="7" y="6" width="2" height="7" fill="#3f6d2d"/>
+            <rect x="4" y="7" width="3" height="2" fill="#5b9b3e"/>
+            <rect x="3" y="5" width="3" height="2" fill="#78b84f"/>
+            <rect x="9" y="4" width="3" height="2" fill="#78b84f"/>
+            <rect x="10" y="6" width="3" height="2" fill="#5b9b3e"/>
+            <rect x="7" y="4" width="2" height="2" fill="#3f6d2d"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>学习农场</strong>
+          <small>LEARNING FARM</small>
+        </span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="主导航">
+        <a class="nav-link is-active" href="#home"><span>农场首页</span></a>
+        <a class="nav-link" href="#crops"><span>学习作物</span></a>
+        <a class="nav-link" href="#harvest"><span>收获谷仓</span></a>
+        <a class="nav-link" href="#journal"><span>冒险日志</span></a>
+      </nav>
+
+      <div class="header-side">
+        <span class="weather-pill" title="今天的日期">
+          <svg class="icon sun-icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span id="today-label">今天</span>
+        </span>
+        <button class="btn btn-primary btn-header" type="button" data-open-record aria-label="记录今日收获">
+          <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+          <span>记录收获</span>
+        </button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-cloud cloud-1" aria-hidden="true"></div>
+      <div class="hero-cloud cloud-2" aria-hidden="true"></div>
+      <div class="hero-cloud cloud-3" aria-hidden="true"></div>
+
+      <div class="container hero-container">
+        <div class="hero-grid">
+          <article class="hero-panel">
+            <div class="hero-topline">
+              <span class="eyebrow"><span class="eyebrow-spark">✦</span> FARMER'S ALMANAC / 农场主手记</span>
+              <span class="day-stamp">RECORDS <strong data-stat="hero-records">000</strong></span>
+            </div>
+
+            <h1 id="hero-title">把每一次学习，<br><span>种成一片田野。</span></h1>
+            <p class="hero-desc">这里是我的学习农场。播下好奇，浇水坚持，收获一茬一茬的成长。</p>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg" type="button" data-open-record>
+                <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+                记录今日收获
+              </button>
+              <a class="btn btn-secondary btn-lg" href="#harvest">
+                逛逛谷仓
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+
+            <div class="hero-note">
+              <span class="note-line" aria-hidden="true"></span>
+              <p><span id="season-label">秋日</span> · 第 <span id="week-label">45</span> 周 <span>|</span> 宜 深耕、复盘、早点睡</p>
+            </div>
+
+            <div class="almanac-stamp" aria-hidden="true">
+              <span>秋日</span>
+              <strong>宜学习</strong>
+              <small>GOOD HARVEST</small>
+            </div>
+          </article>
+
+          <div class="scene-shell">
+            <div class="scene-topbar">
+              <span class="scene-live"><i aria-hidden="true"></i> MY LITTLE FARM</span>
+              <span class="scene-coord">SINCE TODAY</span>
+            </div>
+            <div class="scene-frame">
+              <svg class="farm-scene" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="一幅像素风农场插画：红色谷仓、金色麦田、池塘、果树和一位正在散步的农夫。">
+                <defs>
+                  <pattern id="grass-speckles" width="16" height="16" patternUnits="userSpaceOnUse">
+                    <rect width="16" height="16" fill="#78b451"/>
+                    <rect x="3" y="5" width="2" height="1" fill="#69a544"/>
+                    <rect x="11" y="11" width="2" height="1" fill="#8bc45d"/>
+                    <rect x="7" y="1" width="1" height="2" fill="#6ca848"/>
+                  </pattern>
+                  <pattern id="soil-lines" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(4)">
+                    <rect width="24" height="24" fill="#97633c"/>
+                    <rect y="6" width="24" height="2" fill="#7f502f"/>
+                    <rect y="16" width="12" height="2" fill="#a97045"/>
+                  </pattern>
+                </defs>
+
+                <!-- 天空与太阳 -->
+                <rect width="720" height="480" fill="#a5dce6"/>
+                <rect y="0" width="720" height="96" fill="#9bd5e2"/>
+                <g class="scene-sun">
+                  <rect x="585" y="34" width="8" height="20" fill="#f4bd48"/>
+                  <rect x="625" y="34" width="8" height="20" fill="#f4bd48"/>
+                  <rect x="567" y="62" width="20" height="8" fill="#f4bd48"/>
+                  <rect x="648" y="62" width="20" height="8" fill="#f4bd48"/>
+                  <rect x="580" y="53" width="54" height="54" fill="#f7ca58"/>
+                  <rect x="588" y="45" width="38" height="70" fill="#f7ca58"/>
+                  <rect x="572" y="61" width="70" height="38" fill="#f7ca58"/>
+                  <rect x="588" y="53" width="12" height="10" fill="#ffe28a"/>
+                  <rect x="588" y="53" width="10" height="8" fill="#fff0b5"/>
+                </g>
+
+                <!-- 云朵 -->
+                <g class="cloud cloud-back" fill="#edf4e4">
+                  <rect x="63" y="76" width="88" height="18"/>
+                  <rect x="48" y="86" width="126" height="20"/>
+                  <rect x="77" y="64" width="56" height="18"/>
+                  <rect x="92" y="54" width="36" height="16"/>
+                  <rect x="32" y="96" width="154" height="10" fill="#dbead9"/>
+                </g>
+                <g class="cloud cloud-front" fill="#f8f4dc">
+                  <rect x="390" y="112" width="102" height="16"/>
+                  <rect x="372" y="120" width="142" height="18"/>
+                  <rect x="409" y="100" width="58" height="16"/>
+                  <rect x="424" y="91" width="34" height="14"/>
+                  <rect x="356" y="130" width="168" height="8" fill="#e3ebd4"/>
+                </g>
+
+                <!-- 远山与草地 -->
+                <path d="M0 242h38l18-16h56l23-18h45l20 18h71l25-24h55l19 24h80l27-18h54l18 18h81l17-12h46l21 24h26v32H0Z" fill="#8fc06a"/>
+                <path d="M0 266h44l20 15 34-6 26-20 38 6 17 17 42-2 21-18 46 5 24 20 51-9 30-25 37 13 28 22 50-4 19-15 25 12 26 25 51-12 22-19v32H0Z" fill="#72aa4d"/>
+                <rect y="276" width="720" height="204" fill="url(#grass-speckles)"/>
+
+                <!-- 栅栏与远景树 -->
+                <g class="tree tree-far-left" transform="translate(2 176)">
+                  <rect x="30" y="76" width="14" height="44" fill="#6e4a2e"/>
+                  <rect x="18" y="46" width="38" height="38" fill="#4b7c38"/>
+                  <rect x="8" y="52" width="58" height="25" fill="#5f9443"/>
+                  <rect x="16" y="32" width="42" height="33" fill="#6ca94d"/>
+                  <rect x="29" y="24" width="21" height="20" fill="#78b451"/>
+                  <rect x="14" y="43" width="11" height="11" fill="#7bb954"/>
+                  <rect x="47" y="57" width="13" height="13" fill="#3f6d2d"/>
+                </g>
+                <g class="tree tree-far-right" transform="translate(628 190) scale(.8)">
+                  <rect x="30" y="76" width="14" height="44" fill="#6e4a2e"/>
+                  <rect x="18" y="46" width="38" height="38" fill="#4b7c38"/>
+                  <rect x="8" y="52" width="58" height="25" fill="#5f9443"/>
+                  <rect x="16" y="32" width="42" height="33" fill="#6ca94d"/>
+                  <rect x="29" y="24" width="21" height="20" fill="#78b451"/>
+                </g>
+
+                <!-- 谷仓 -->
+                <g class="barn">
+                  <rect x="112" y="178" width="180" height="118" fill="#bd6245"/>
+                  <rect x="270" y="184" width="24" height="112" fill="#9b4b35"/>
+                  <path d="M86 184h232v-16h-16v-16h-24v-16h-24v-16H150v16h-24v16h-24v16H86Z" fill="#74372e"/>
+                  <path d="M86 184h232v12H86Z" fill="#55281f"/>
+                  <rect x="126" y="196" width="152" height="10" fill="#e2ae76"/>
+                  <rect x="126" y="196" width="152" height="4" fill="#f5d39d"/>
+                  <rect x="154" y="231" width="64" height="65" fill="#6b3a27"/>
+                  <rect x="154" y="231" width="8" height="65" fill="#8c5032"/>
+                  <rect x="210" y="231" width="8" height="65" fill="#8c5032"/>
+                  <rect x="161" y="267" width="50" height="4" fill="#4d2a1d"/>
+                  <rect x="181" y="231" width="10" height="65" fill="#4d2a1d"/>
+                  <circle cx="207" cy="283" r="3" fill="#f3c95b"/>
+                  <rect x="240" y="218" width="34" height="32" fill="#f2d291"/>
+                  <rect x="246" y="224" width="22" height="20" fill="#6ba9b6"/>
+                  <path d="M245 224h24M257 224v20" stroke="#f2d291" stroke-width="4"/>
+                  <rect x="120" y="214" width="24" height="23" fill="#f2d291"/>
+                  <rect x="125" y="219" width="14" height="13" fill="#6ba9b6"/>
+                  <path d="M132 219v13M125 225h14" stroke="#f2d291" stroke-width="3"/>
+                  <rect x="288" y="156" width="6" height="20" fill="#efe4c9"/>
+                  <path d="M294 160h22v12h-22Z" fill="#e3a13d"/>
+                  <rect x="110" y="289" width="184" height="7" fill="#5a3322"/>
+                  <rect x="98" y="296" width="208" height="9" fill="#e0b97c"/>
+                  <rect x="98" y="296" width="208" height="3" fill="#f3d59b"/>
+                  <rect x="287" y="203" width="30" height="86" fill="#c7b8a0"/>
+                  <path d="M287 203h30v-10h-8v-8h-14v8h-8Z" fill="#857965"/>
+                  <rect x="291" y="211" width="22" height="4" fill="#a39379"/>
+                  <rect x="291" y="224" width="22" height="4" fill="#a39379"/>
+                  <rect x="291" y="237" width="22" height="4" fill="#a39379"/>
+                  <rect x="291" y="250" width="22" height="4" fill="#a39379"/>
+                  <rect x="291" y="263" width="22" height="4" fill="#a39379"/>
+                  <rect x="74" y="303" width="4" height="22" fill="#e9d7a9"/>
+                  <rect x="30" y="303" width="4" height="22" fill="#e9d7a9"/>
+                  <rect x="20" y="308" width="88" height="4" fill="#f0e2bd"/>
+                  <rect x="20" y="318" width="88" height="4" fill="#f0e2bd"/>
+                  <rect x="368" y="298" width="4" height="22" fill="#e9d7a9"/>
+                  <rect x="424" y="298" width="4" height="22" fill="#e9d7a9"/>
+                  <rect x="360" y="304" width="76" height="4" fill="#f0e2bd"/>
+                  <rect x="360" y="314" width="76" height="4" fill="#f0e2bd"/>
+                </g>
+
+                <!-- 小路 -->
+                <path d="M182 303h46l24 38 20 40 20 99H146l14-99 16-40Z" fill="#d8b783"/>
+                <path d="M187 310h35l14 26h-57Z" fill="#e6c99a"/>
+                <rect x="178" y="346" width="55" height="10" fill="#c4a16d"/>
+                <rect x="190" y="371" width="48" height="10" fill="#c4a16d"/>
+                <rect x="205" y="399" width="47" height="10" fill="#c4a16d"/>
+                <rect x="219" y="429" width="52" height="10" fill="#c4a16d"/>
+
+                <!-- 农田 -->
+                <g class="field">
+                  <path d="M18 326h158l-8 38H28Z" fill="#8a5a36"/>
+                  <path d="M18 326h158l-8 38H28Z" fill="url(#soil-lines)" opacity=".9"/>
+                  <path d="M12 370h174l-10 44H26Z" fill="#805131"/>
+                  <path d="M12 370h174l-10 44H26Z" fill="url(#soil-lines)" opacity=".9"/>
+                  <path d="M4 420h194l-12 48H18Z" fill="#74482d"/>
+                  <path d="M4 420h194l-12 48H18Z" fill="url(#soil-lines)" opacity=".9"/>
+
+                  <g class="crops-row row-1">
+                    <g transform="translate(45 337)"><rect x="8" y="18" width="3" height="16" fill="#36652a"/><rect x="1" y="14" width="10" height="6" fill="#70ae49"/><rect x="11" y="8" width="9" height="6" fill="#83bf55"/><rect x="4" y="5" width="9" height="7" fill="#99d066"/></g>
+                    <g transform="translate(82 337)"><rect x="8" y="18" width="3" height="16" fill="#36652a"/><rect x="1" y="14" width="10" height="6" fill="#70ae49"/><rect x="11" y="8" width="9" height="6" fill="#83bf55"/><rect x="4" y="5" width="9" height="7" fill="#99d066"/></g>
+                    <g transform="translate(119 337)"><rect x="8" y="18" width="3" height="16" fill="#36652a"/><rect x="1" y="14" width="10" height="6" fill="#70ae49"/><rect x="11" y="8" width="9" height="6" fill="#83bf55"/><rect x="4" y="5" width="9" height="7" fill="#99d066"/></g>
+                  </g>
+                  <g class="crops-row row-2">
+                    <g transform="translate(33 382)"><rect x="9" y="20" width="4" height="19" fill="#365f2a"/><rect x="2" y="15" width="12" height="7" fill="#6aa847"/><rect x="13" y="8" width="11" height="7" fill="#83bd51"/><rect x="5" y="5" width="11" height="8" fill="#9bd166"/><rect x="8" y="0" width="6" height="7" fill="#f3c54f"/></g>
+                    <g transform="translate(73 382)"><rect x="9" y="20" width="4" height="19" fill="#365f2a"/><rect x="2" y="15" width="12" height="7" fill="#6aa847"/><rect x="13" y="8" width="11" height="7" fill="#83bd51"/><rect x="5" y="5" width="11" height="8" fill="#9bd166"/><rect x="8" y="0" width="6" height="7" fill="#f3c54f"/></g>
+                    <g transform="translate(113 382)"><rect x="9" y="20" width="4" height="19" fill="#365f2a"/><rect x="2" y="15" width="12" height="7" fill="#6aa847"/><rect x="13" y="8" width="11" height="7" fill="#83bd51"/><rect x="5" y="5" width="11" height="8" fill="#9bd166"/><rect x="8" y="0" width="6" height="7" fill="#f3c54f"/></g>
+                    <g transform="translate(151 382)"><rect x="9" y="20" width="4" height="19" fill="#365f2a"/><rect x="2" y="15" width="12" height="7" fill="#6aa847"/><rect x="13" y="8" width="11" height="7" fill="#83bd51"/><rect x="5" y="5" width="11" height="8" fill="#9bd166"/><rect x="8" y="0" width="6" height="7" fill="#f3c54f"/></g>
+                  </g>
+                  <g class="crops-row row-3">
+                    <g transform="translate(25 433)"><rect x="10" y="22" width="4" height="22" fill="#315a26"/><rect x="2" y="17" width="14" height="8" fill="#649d42"/><rect x="16" y="9" width="13" height="8" fill="#7eb84e"/><rect x="4" y="5" width="13" height="9" fill="#95cc61"/><rect x="8" y="0" width="7" height="8" fill="#efbd48"/></g>
+                    <g transform="translate(69 433)"><rect x="10" y="22" width="4" height="22" fill="#315a26"/><rect x="2" y="17" width="14" height="8" fill="#649d42"/><rect x="16" y="9" width="13" height="8" fill="#7eb84e"/><rect x="4" y="5" width="13" height="9" fill="#95cc61"/><rect x="8" y="0" width="7" height="8" fill="#efbd48"/></g>
+                    <g transform="translate(113 433)"><rect x="10" y="22" width="4" height="22" fill="#315a26"/><rect x="2" y="17" width="14" height="8" fill="#649d42"/><rect x="16" y="9" width="13" height="8" fill="#7eb84e"/><rect x="4" y="5" width="13" height="9" fill="#95cc61"/><rect x="8" y="0" width="7" height="8" fill="#efbd48"/></g>
+                    <g transform="translate(157 433)"><rect x="10" y="22" width="4" height="22" fill="#315a26"/><rect x="2" y="17" width="14" height="8" fill="#649d42"/><rect x="16" y="9" width="13" height="8" fill="#7eb84e"/><rect x="4" y="5" width="13" height="9" fill="#95cc61"/><rect x="8" y="0" width="7" height="8" fill="#efbd48"/></g>
+                  </g>
+                </g>
+
+                <!-- 池塘 -->
+                <g class="pond">
+                  <rect x="486" y="326" width="190" height="106" fill="#e0c98f"/>
+                  <rect x="496" y="334" width="170" height="88" fill="#4f99ae"/>
+                  <rect x="504" y="342" width="154" height="72" fill="#67b4c7"/>
+                  <rect x="514" y="350" width="34" height="5" fill="#a8dde3"/>
+                  <rect x="598" y="378" width="44" height="5" fill="#a8dde3"/>
+                  <rect x="552" y="397" width="24" height="4" fill="#8bcbd7"/>
+                  <rect x="624" y="394" width="16" height="4" fill="#4a8fa5"/>
+                  <rect x="492" y="336" width="6" height="70" fill="#c7a96f"/>
+                  <rect x="664" y="340" width="6" height="76" fill="#c7a96f"/>
+                  <g fill="#3d6f2c">
+                    <rect x="481" y="350" width="4" height="22"/>
+                    <rect x="477" y="341" width="4" height="13"/>
+                    <rect x="486" y="346" width="4" height="16"/>
+                    <rect x="675" y="356" width="4" height="22"/>
+                    <rect x="679" y="347" width="4" height="13"/>
+                    <rect x="670" y="351" width="4" height="17"/>
+                  </g>
+                  <rect x="516" y="371" width="16" height="8" fill="#e9d28f"/>
+                  <rect x="522" y="367" width="4" height="4" fill="#f6e6b0"/>
+                  <rect x="604" y="348" width="12" height="6" fill="#e9d28f"/>
+                </g>
+
+                <!-- 近景大树 -->
+                <g class="tree tree-near" transform="translate(477 184)">
+                  <rect x="51" y="90" width="18" height="52" fill="#69442a"/>
+                  <rect x="46" y="70" width="28" height="46" fill="#7d5231"/>
+                  <rect x="30" y="53" width="62" height="42" fill="#426f31"/>
+                  <rect x="14" y="64" width="88" height="28" fill="#568a3b"/>
+                  <rect x="22" y="42" width="72" height="34" fill="#639a43"/>
+                  <rect x="38" y="28" width="44" height="28" fill="#72aa4d"/>
+                  <rect x="48" y="18" width="26" height="24" fill="#7bb954"/>
+                  <rect x="18" y="49" width="15" height="15" fill="#80bd57"/>
+                  <rect x="82" y="55" width="16" height="16" fill="#375f2b"/>
+                  <rect x="52" y="63" width="9" height="9" fill="#335c29"/>
+                  <rect x="35" y="78" width="10" height="10" fill="#335c29"/>
+                  <circle cx="63" cy="83" r="5" fill="#db5e48"/>
+                  <circle cx="43" cy="57" r="4" fill="#db5e48"/>
+                </g>
+
+                <!-- 农夫 -->
+                <g class="farmer" transform="translate(358 332)">
+                  <ellipse cx="20" cy="70" rx="20" ry="6" fill="#4c7d35" opacity=".35"/>
+                  <rect x="15" y="51" width="8" height="16" fill="#4a3629"/>
+                  <rect x="21" y="51" width="8" height="16" fill="#4a3629"/>
+                  <rect x="12" y="64" width="13" height="6" fill="#3f2c20"/>
+                  <rect x="22" y="64" width="13" height="6" fill="#3f2c20"/>
+                  <rect x="9" y="31" width="26" height="24" fill="#4c8ca6"/>
+                  <rect x="13" y="31" width="5" height="17" fill="#6aa9c2"/>
+                  <rect x="28" y="31" width="5" height="17" fill="#3f7891"/>
+                  <rect x="13" y="37" width="19" height="4" fill="#e7d9b7"/>
+                  <rect x="15" y="35" width="3" height="9" fill="#d9c8a2"/>
+                  <rect x="27" y="35" width="3" height="9" fill="#d9c8a2"/>
+                  <rect x="12" y="30" width="21" height="4" fill="#e0b95b"/>
+                  <rect x="7" y="25" width="30" height="7" fill="#e7bd62"/>
+                  <rect x="11" y="18" width="22" height="8" fill="#f1cd79"/>
+                  <rect x="13" y="20" width="18" height="3" fill="#d8a947"/>
+                  <rect x="14" y="27" width="17" height="5" fill="#d59e7d"/>
+                  <rect x="16" y="29" width="2" height="2" fill="#3a2a20"/>
+                  <rect x="27" y="29" width="2" height="2" fill="#3a2a20"/>
+                  <rect x="21" y="33" width="4" height="2" fill="#a96754"/>
+                  <rect x="6" y="40" width="6" height="12" fill="#d59e7d"/>
+                  <rect x="33" y="40" width="6" height="12" fill="#d59e7d"/>
+                  <rect x="9" y="52" width="9" height="4" fill="#d59e7d"/>
+                  <rect x="29" y="52" width="9" height="4" fill="#d59e7d"/>
+                  <rect x="28" y="20" width="28" height="3" fill="#88602f"/>
+                  <rect x="50" y="23" width="3" height="30" fill="#88602f"/>
+                  <rect x="50" y="50" width="8" height="4" fill="#5f4022"/>
+                </g>
+
+                <!-- 小鸡与蝴蝶 -->
+                <g class="chicken" transform="translate(438 364)">
+                  <rect x="5" y="8" width="16" height="11" fill="#f6efd8"/>
+                  <rect x="2" y="12" width="7" height="8" fill="#e8dfc6"/>
+                  <rect x="17" y="3" width="9" height="10" fill="#f6efd8"/>
+                  <rect x="20" y="0" width="3" height="5" fill="#d95845"/>
+                  <rect x="23" y="5" width="3" height="3" fill="#e3a53a"/>
+                  <rect x="20" y="6" width="2" height="2" fill="#3a2a20"/>
+                  <rect x="7" y="19" width="3" height="5" fill="#d39a3d"/>
+                  <rect x="16" y="19" width="3" height="5" fill="#d39a3d"/>
+                  <rect x="8" y="10" width="6" height="3" fill="#dfd3b3"/>
+                </g>
+                <g class="butterfly" transform="translate(566 288)">
+                  <rect x="0" y="3" width="4" height="4" fill="#f2c74f"/>
+                  <rect x="8" y="3" width="4" height="4" fill="#f2c74f"/>
+                  <rect x="4" y="5" width="4" height="2" fill="#5b4630"/>
+                  <rect x="2" y="0" width="3" height="3" fill="#ffe08a"/>
+                  <rect x="8" y="0" width="3" height="3" fill="#ffe08a"/>
+                </g>
+
+                <!-- 前景草叶 -->
+                <g fill="#5d943b">
+                  <rect x="0" y="455" width="7" height="25"/>
+                  <rect x="14" y="463" width="4" height="17"/>
+                  <rect x="671" y="448" width="6" height="32"/>
+                  <rect x="690" y="459" width="4" height="21"/>
+                  <rect x="704" y="452" width="6" height="28"/>
+                  <rect x="331" y="463" width="4" height="17"/>
+                  <rect x="447" y="470" width="4" height="10"/>
+                </g>
+                <g fill="#87c257">
+                  <rect x="7" y="463" width="4" height="17"/>
+                  <rect x="686" y="466" width="4" height="14"/>
+                  <rect x="319" y="471" width="3" height="9"/>
+                </g>
+              </svg>
+
+              <div class="scene-tag">
+                <span class="scene-tag-season" id="scene-season-en">AUTUMN</span>
+                <strong><span id="scene-season">秋</span> · 第 <span id="scene-week">45</span> 周</strong>
+              </div>
+              <div class="scene-weather">
+                <svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>
+                <span><strong>今日</strong> 宜学习</span>
+              </div>
+            </div>
+
+            <div class="scene-caption">
+              <span class="scene-status"><i aria-hidden="true"></i> 今日农场状态：一切都在慢慢变好</span>
+              <span class="scene-level">FARM LV. <strong data-stat="scene-level">1</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid" aria-label="学习数据总览">
+          <article class="stat-card stat-green">
+            <div class="stat-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-fire"/></svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">连续学习</p>
+              <p class="stat-value"><span data-stat="streak">0</span><em>天</em></p>
+              <p class="stat-sub" data-stat-note="streak">从第一颗种子开始</p>
+            </div>
+          </article>
+          <article class="stat-card stat-blue">
+            <div class="stat-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">累计专注</p>
+              <p class="stat-value"><span data-stat="hours">0</span><em>小时</em></p>
+              <p class="stat-sub">每一点投入都算数</p>
+            </div>
+          </article>
+          <article class="stat-card stat-orange">
+            <div class="stat-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-basket"/></svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">收获成果</p>
+              <p class="stat-value"><span data-stat="harvests">0</span><em>项</em></p>
+              <p class="stat-sub" data-stat-note="month">近 30 天收获 0 项</p>
+            </div>
+          </article>
+          <article class="stat-card stat-gold">
+            <div class="stat-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">农场等级</p>
+              <p class="stat-value">LV.<span data-stat="level">1</span></p>
+              <p class="stat-sub" data-stat-note="level">距离 Lv.2 还差 8 项收获</p>
+            </div>
+            <div class="stat-crops" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section crops-section" id="crops" aria-labelledby="crops-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-heading">
+            <p class="eyebrow"><span class="eyebrow-spark">✦</span> FIELD NOTES · 田野手账</p>
+            <h2 id="crops-title">我的学习作物</h2>
+            <p class="section-desc">每项技能都是一块田。日拱一卒，静待抽穗。</p>
+          </div>
+          <div class="section-tools">
+            <div class="crop-filters" role="group" aria-label="筛选学习作物">
+              <button class="chip is-active" type="button" data-crop-filter="all" aria-pressed="true">全部作物</button>
+              <button class="chip" type="button" data-crop-filter="growing" aria-pressed="false">生长中</button>
+              <button class="chip" type="button" data-crop-filter="mastered" aria-pressed="false">已丰收</button>
+            </div>
+            <span class="field-count"><strong id="crop-count">0</strong> 块田已开垦</span>
+          </div>
+        </header>
+
+        <div class="crop-grid" id="crop-grid"></div>
+
+        <div class="field-footer reveal">
+          <p><span aria-hidden="true">🌱</span> 每一笔收获，都会归到一块属于你的田里。</p>
+          <button class="text-button is-hidden" type="button" id="clear-skill-filter">清除技能筛选</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section harvest-section" id="harvest" aria-labelledby="harvest-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-heading">
+            <p class="eyebrow"><span class="eyebrow-spark">✦</span> HARVEST BARN · 收成清点</p>
+            <h2 id="harvest-title">把努力装进谷仓</h2>
+            <p class="section-desc">数据不会替你成长，但它会记得你走过的每一步。</p>
+          </div>
+          <div class="section-meta">
+            <span class="outline-pill">本周 · 第 <span id="harvest-week">45</span> 周</span>
+          </div>
+        </header>
+
+        <div class="harvest-grid">
+          <article class="panel chart-panel reveal">
+            <header class="panel-head">
+              <div>
+                <p class="panel-kicker">WEEKLY HARVEST</p>
+                <h3>本周收成</h3>
+              </div>
+              <div class="chart-total">
+                <strong id="chart-total">0<span>h</span></strong>
+              </div>
+            </header>
+
+            <div class="chart" aria-label="本周每日专注时长柱状图">
+              <div class="chart-grid-lines" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="chart-bars" id="chart-bars"></div>
+              <div class="chart-empty" id="chart-empty">
+                <span class="chart-empty-icon" aria-hidden="true">
+                  <svg class="icon"><use href="#i-sprout"/></svg>
+                </span>
+                <p>本周还没有专注记录<small>记录一次学习，麦穗就会长高一点。</small></p>
+              </div>
+            </div>
+
+            <div class="chart-footer">
+              <div class="chart-insight">
+                <span class="insight-icon" aria-hidden="true">★</span>
+                <p><strong>最专注的一天</strong><span id="best-day">暂无记录</span></p>
+              </div>
+              <div class="chart-insight">
+                <span class="insight-icon insight-icon-green" aria-hidden="true">✓</span>
+                <p><strong>本周记录</strong><span id="week-count">0 条收获</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel barn-panel reveal">
+            <div class="barn-planks" aria-hidden="true"></div>
+            <header class="panel-head barn-head">
+              <div>
+                <p class="panel-kicker">TROPHY BARN</p>
+                <h3>谷仓荣誉墙</h3>
+              </div>
+              <span class="barn-count"><strong id="badge-count">0</strong> / 6</span>
+            </header>
+
+            <div class="badge-grid" id="badge-grid"></div>
+
+            <div class="barn-note">
+              <span aria-hidden="true">✦</span>
+              <span id="barn-note-text">完成第一次收获，就能点亮第一枚勋章。</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journal-section" id="journal" aria-labelledby="journal-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <div class="section-heading">
+            <p class="eyebrow"><span class="eyebrow-spark">✦</span> ADVENTURE LOG · 冒险日志</p>
+            <h2 id="journal-title">每一次小小的完成</h2>
+            <p class="section-desc">都值得被钉在墙上。这里保存着我真实走过的学习轨迹。</p>
+          </div>
+          <button class="btn btn-primary" type="button" data-open-record>
+            <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+            新增收获
+          </button>
+        </header>
+
+        <div class="journal-layout">
+          <div class="journal-main">
+            <div class="journal-toolbar">
+              <div class="journal-filters" id="journal-filters" role="group" aria-label="按技能筛选日志"></div>
+              <span class="journal-count" id="journal-count">共 0 条记录</span>
+            </div>
+
+            <div class="timeline" id="timeline" aria-live="polite"></div>
+
+            <div class="timeline-more">
+              <button class="text-button load-more" type="button" id="load-more" hidden>
+                <span>展开全部记录</span>
+                <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <aside class="journal-aside">
+            <article class="quote-card reveal">
+              <span class="quote-glyph" aria-hidden="true">“</span>
+              <blockquote>你不需要很厉害才开始，<br>但你需要开始才会很厉害。</blockquote>
+              <p>— 农场主的手账</p>
+              <div class="quote-deco" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </article>
+
+            <article class="goals-card start-card reveal">
+              <header>
+                <p class="panel-kicker">HOW TO START</p>
+                <h3>从一颗种子开始</h3>
+              </header>
+              <div class="start-steps">
+                <div class="start-step">
+                  <span class="step-number">01</span>
+                  <div><strong>开垦一块田</strong><p>给真正想学的方向留一块地。</p></div>
+                </div>
+                <div class="start-step">
+                  <span class="step-number">02</span>
+                  <div><strong>记录一次学习</strong><p>哪怕只有半小时，也算数。</p></div>
+                </div>
+                <div class="start-step">
+                  <span class="step-number">03</span>
+                  <div><strong>等它慢慢长大</strong><p>所有真实的积累，都会留下痕迹。</p></div>
+                </div>
+              </div>
+              <button class="btn btn-secondary start-card-button" type="button" data-open-skill>
+                <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>
+                <span id="start-card-label">开垦第一块田</span>
+              </button>
+              <p class="goals-foot">没有目标也没关系，先记录，再找到节奏。</p>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing-section" aria-label="结束语">
+      <div class="container">
+        <div class="closing-card reveal">
+          <div class="closing-sparkles" aria-hidden="true"><span>✦</span><span>✦</span><span>✦</span></div>
+          <div class="closing-copy">
+            <p class="eyebrow">FARMER'S CREED · 农场信条</p>
+            <h2>慢慢来，比较快。</h2>
+            <p>今天种下的一点点，会在未来的某一天，长成一片能乘凉的树荫。</p>
+          </div>
+          <button class="btn btn-cream btn-lg" type="button" data-open-record>
+            种下今天的收获
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark brand-mark-small" aria-hidden="true">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+            <rect width="16" height="16" fill="#f4c451"/>
+            <rect x="2" y="13" width="12" height="2" fill="#7a4a2b"/>
+            <rect x="7" y="6" width="2" height="7" fill="#3f6d2d"/>
+            <rect x="4" y="7" width="3" height="2" fill="#5b9b3e"/>
+            <rect x="3" y="5" width="3" height="2" fill="#78b84f"/>
+            <rect x="9" y="4" width="3" height="2" fill="#78b84f"/>
+            <rect x="10" y="6" width="3" height="2" fill="#5b9b3e"/>
+          </svg>
+        </span>
+        <p><strong>学习农场</strong><span>慢慢种，常常收。</span></p>
+      </div>
+      <p class="footer-note">数据保存在本机浏览器 · 你的记录只属于你</p>
+      <div class="footer-actions">
+        <button class="text-button footer-export" type="button" id="export-data">
+          <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+          导出记录
+        </button>
+        <a class="footer-top" href="#home">回到田埂 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="record-dialog" id="record-dialog" aria-labelledby="record-dialog-title">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" id="dialog-close" aria-label="关闭记录窗口">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+
+      <div class="dialog-heading">
+        <div class="dialog-badge" aria-hidden="true">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+            <rect width="16" height="16" fill="#f4c451"/>
+            <rect x="2" y="13" width="12" height="2" fill="#7a4a2b"/>
+            <rect x="7" y="5" width="2" height="8" fill="#3f6d2d"/>
+            <rect x="3" y="6" width="4" height="2" fill="#78b84f"/>
+            <rect x="9" y="4" width="4" height="2" fill="#78b84f"/>
+            <rect x="10" y="6" width="3" height="2" fill="#5b9b3e"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">NEW HARVEST · 新收获</p>
+          <h2 id="record-dialog-title">记录今日收获</h2>
+          <p>今天，你为自己的田野种下了什么？</p>
+        </div>
+      </div>
+
+      <form id="record-form" novalidate>
+        <div class="form-field form-field-full">
+          <label for="record-title">学习成果 <span class="required">*</span></label>
+          <input id="record-title" name="title" type="text" maxlength="60" placeholder="例如：完成第一章的练习题" required autocomplete="off">
+          <p class="field-error" id="title-error" aria-live="polite"></p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="record-skill">属于哪块田 <span class="required">*</span></label>
+            <div class="select-wrap">
+              <select id="record-skill" name="skill" required></select>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="record-hours">投入时长（小时） <span class="required">*</span></label>
+            <input id="record-hours" name="hours" type="number" min="0.5" max="24" step="0.5" value="1" required inputmode="decimal">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="record-date">收获日期</label>
+            <input id="record-date" name="date" type="date" required>
+          </div>
+          <div class="form-field">
+            <label for="record-mood">今天的状态</label>
+            <div class="mood-options">
+              <label class="mood-option">
+                <input type="radio" name="mood" value="专注" checked>
+                <span>专注</span>
+              </label>
+              <label class="mood-option">
+                <input type="radio" name="mood" value="突破">
+                <span>突破</span>
+              </label>
+              <label class="mood-option">
+                <input type="radio" name="mood" value="复习">
+                <span>复习</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="record-note">收获笔记 <span class="optional">选填</span></label>
+          <textarea id="record-note" name="note" rows="3" maxlength="180" placeholder="写下一个想法、一个卡点，或一句想对未来的自己说的话……"></textarea>
+          <div class="char-count"><span id="note-count">0</span> / 180</div>
+        </div>
+
+        <div class="dialog-actions">
+          <button class="btn btn-secondary" type="button" id="dialog-cancel">先不记了</button>
+          <button class="btn btn-primary" type="submit">
+            <svg class="icon" aria-hidden="true"><use href="#i-basket"/></svg>
+            放进谷仓
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="record-dialog skill-dialog" id="skill-dialog" aria-labelledby="skill-dialog-title">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" id="skill-dialog-close" aria-label="关闭开垦窗口">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+
+      <div class="dialog-heading">
+        <div class="dialog-badge" aria-hidden="true">
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+            <rect width="16" height="16" fill="#f4c451"/>
+            <rect x="2" y="13" width="12" height="2" fill="#7a4a2b"/>
+            <rect x="7" y="5" width="2" height="8" fill="#3f6d2d"/>
+            <rect x="3" y="6" width="4" height="2" fill="#78b84f"/>
+            <rect x="9" y="4" width="4" height="2" fill="#78b84f"/>
+            <rect x="10" y="6" width="3" height="2" fill="#5b9b3e"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">NEW FIELD · 新田地</p>
+          <h2 id="skill-dialog-title">开垦一块学习田</h2>
+          <p>只种你真正想学的东西，从第一块田开始。</p>
+        </div>
+      </div>
+
+      <form id="skill-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="skill-name">学习方向 <span class="required">*</span></label>
+            <input id="skill-name" name="name" type="text" maxlength="20" placeholder="例如：编程开发、日语、摄影" required autocomplete="off">
+            <p class="field-error" id="skill-name-error" aria-live="polite"></p>
+          </div>
+          <div class="form-field">
+            <label for="skill-crop">作物名字 <span class="optional">选填</span></label>
+            <input id="skill-crop" name="crop" type="text" maxlength="12" placeholder="例如：代码藤" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="skill-description">关于这块田 <span class="optional">选填</span></label>
+          <input id="skill-description" name="description" type="text" maxlength="80" placeholder="一句话描述你想在这里种下什么" autocomplete="off">
+        </div>
+
+        <fieldset class="form-field form-field-full sprite-field">
+          <legend>选择作物精灵 <span class="required">*</span></legend>
+          <div class="sprite-options" id="sprite-options" role="radiogroup" aria-label="选择作物精灵"></div>
+        </fieldset>
+
+        <div class="dialog-actions">
+          <button class="btn btn-secondary" type="button" id="skill-dialog-cancel">先不开了</button>
+          <button class="btn btn-primary" type="submit">
+            <svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>
+            开垦这块田
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon"><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg></span>
+    <span id="toast-message">收获已入库</span>
+  </div>
+
+  <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
